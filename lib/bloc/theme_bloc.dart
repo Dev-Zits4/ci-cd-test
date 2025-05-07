@@ -2,7 +2,7 @@ import 'package:bloc_prac/bloc/theme_event.dart';
 import 'package:bloc_prac/bloc/theme_state.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
-class CounterBloc extends HydratedBloc<CounterEvent, CounterState> {
+class CounterBloc extends Bloc<CounterEvent, CounterState> {
   CounterBloc() : super(CounterState(counterA: 0, counterB: 0)) {
     on<IncrementCounterA>((event, emit) {
       _incrementCounterA(emit);
@@ -32,15 +32,5 @@ class CounterBloc extends HydratedBloc<CounterEvent, CounterState> {
 
   void _decrementCounterB(Emitter<CounterState> emit) {
     return emit(state.copyWith(counterB: state.counterB - 1));
-  }
-
-  @override
-  CounterState? fromJson(Map<String, dynamic> json) {
-    return CounterState(counterA: json['counterA'], counterB: json['counterB']);
-  }
-
-  @override
-  Map<String, dynamic>? toJson(CounterState state) {
-    return {"counterA": state.counterA, "counterB": state.counterB};
   }
 }
