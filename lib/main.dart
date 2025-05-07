@@ -53,29 +53,13 @@ class MyHomePage extends StatelessWidget {
           BlocSelector<CounterBloc, CounterState, int>(
             selector: (state) => state.counterA,
             builder: (context, counterA) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    'Counter A :$counterA',
-                  ),
-                ],
-              );
+              return Text('Counter A :$counterA');
             },
           ),
           BlocSelector<CounterBloc, CounterState, int>(
             selector: (state) => state.counterB,
             builder: (context, counterB) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      'Counter B :$counterB',
-                    ),
-                  ],
-                ),
-              );
+              return Text('Counter B :$counterB');
             },
           ),
         ],
@@ -87,12 +71,14 @@ class MyHomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               FloatingActionButton(
+                key: const Key('incrementA'),
                 onPressed: () =>
                     context.read<CounterBloc>().add(IncrementCounterA()),
                 child: const Icon(Icons.add),
               ),
               const SizedBox(height: 20),
               FloatingActionButton(
+                key: const Key('decrementA'),
                 onPressed: () =>
                     context.read<CounterBloc>().add(DecrementCounterA()),
                 child: const Icon(Icons.remove),
@@ -103,12 +89,14 @@ class MyHomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               FloatingActionButton(
+                key: const Key('incrementB'),
                 onPressed: () =>
                     context.read<CounterBloc>().add(IncrementCounterB()),
                 child: const Icon(Icons.add),
               ),
               const SizedBox(height: 20),
               FloatingActionButton(
+                key: const Key('decrementB'),
                 onPressed: () =>
                     context.read<CounterBloc>().add(DecrementCounterB()),
                 child: const Icon(Icons.remove),
